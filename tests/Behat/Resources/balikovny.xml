@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zv xmlns="http://www.cpost.cz/schema/aict/zv_2"
+	xmlns:xsi="http://www.cpost.cz/schema/aict/zv_2" xsi:schemaLocation="http://www.cpost.cz/schema/aict/zv_2">
+	<generated>2020-03-25T17:52:16</generated>
+	<row>
+		<PSC>Test1</PSC>
+		<NAZEV>Test1</NAZEV>
+		<ADRESA>Test1</ADRESA>
+		<TYP>Test1</TYP>
+		<OTEV_DOBY/>
+		<SOUR_X>Test1</SOUR_X>
+		<SOUR_Y>Test1</SOUR_Y>
+		<OBEC>Test1</OBEC>
+		<C_OBCE>Test1</C_OBCE>
+	</row>
+	<row>
+		<PSC>Test3</PSC>
+		<NAZEV>Test3</NAZEV>
+		<ADRESA>Test3</ADRESA>
+		<TYP>Test3</TYP>
+		<OTEV_DOBY/>
+		<SOUR_X>Test3</SOUR_X>
+		<SOUR_Y>Test3</SOUR_Y>
+		<OBEC>Test3</OBEC>
+		<C_OBCE>Test3</C_OBCE>
+	</row>
+</zv>

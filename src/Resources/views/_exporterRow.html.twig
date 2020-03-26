@@ -1,0 +1,6 @@
+{% if row.ceskaPostaBalikomat %}
+	Balíkovna:
+	{{ row.order.shippingAddress.firstName }} {{ row.order.shippingAddress.lastName }}<br>
+	BALÍKOVNA<br>
+	{{ row.ceskaPostaBalikomat.zip }} {{ row.ceskaPostaBalikomat.name }}
+{% endif %}

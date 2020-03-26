@@ -1,0 +1,10 @@
+{% if form.parent.parent['ceskaPostaBalikomat_' ~ method.code] is defined and form.parent.parent['ceskaPostaBalikomat_' ~ method.code] %}
+	<div class="methodOption ceskaPostaBalikomatySelectDiv">
+		{{ form_widget(form.parent.parent['ceskaPostaBalikomat_' ~ method.code]) }}
+	</div>
+	<div class="ceskaPostaBalikomatySelectDiv">
+		{{ form_errors(form.parent.parent['ceskaPostaBalikomat_' ~ method.code]) }}
+	</div>
+{% endif %}
+
+{{ form_widget(form.parent.parent.ceskaPostaBalikomat) }}

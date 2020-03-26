@@ -1,0 +1,5 @@
+imports:
+    - suites/enable_balikomat_in_shipping_method.yml
+    - suites/update_ceska_posta_balikomaty_branches.yml
+    - suites/admin_sees_ceska_posta_balikomaty_branch_in_order.yml
+    - suites/select_ceska_posta_balikomaty_branch_on_checkout.yml

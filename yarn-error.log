@@ -1,0 +1,26 @@
+Arguments: 
+  /usr/bin/node /usr/share/yarn/bin/yarn.js install
+
+PATH: 
+  /home/ondra/bin:/home/ondra/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+
+Yarn version: 
+  1.21.1
+
+Node version: 
+  8.17.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: EEXIST: file already exists, mkdir '/home/ondra/Projects/Mango/SyliusCeskaPostaBalikomatyPlugin/node_modules'
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

@@ -1,0 +1,7 @@
+{{ form_row(form.balikomatShippingMethod) }}
+{% if resource and resource.id and resource.balikomatShippingMethod %}
+	<a class="ui labeled icon primary button" href="{{ path('mango_sylius_ceska_posta_balikomaty_plugin_sync', {'id': resource.id}) }}" id="ceskaPostaBalikomatyDownloadButton">
+		<i class="sync icon"></i>
+		{{ 'mangoweb.admin.ceskaPostaBalikomaty.form.syncAction'|trans }}
+	</a>
+{% endif %}

@@ -1,0 +1,7 @@
+mango_sylius_ceska_posta_balikomaty_plugin:
+    resource: '@MangoSyliusCeskaPostaBalikomatyPlugin/Resources/config/routing.yml'
+    prefix: /admin
+
+mango_sylius_shipment_export_plugin:
+    resource: "@MangoSyliusShipmentExportPlugin/Resources/config/routing.yml"
+    prefix: /admin

@@ -1,0 +1,7 @@
+mangoweb:
+    shop:
+        checkout:
+            complete:
+                ceskaPostaBalikomatBrach: Česká Pošta Balíkomat
+            shippingStep:
+                chooseCeskaPostaBalikomatBranch: Vyberte balíkomat

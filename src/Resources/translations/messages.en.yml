@@ -1,0 +1,17 @@
+mangoweb:
+    shop:
+        checkout:
+            complete:
+                ceskaPostaBalikomatyBrach: Česká Pošta Balíkomat branch
+            shippingStep:
+                chooseCeskaPostaBalikomatBranch: Choose Česká Pošta Balíkomat Branch
+    admin:
+        ceskaPostaBalikomaty:
+            success:
+                import: Česká Pošta Balíkomat branches synchronization was successful.
+            form:
+                apiKey: Česká Pošta Balíkomat api key
+                syncAction: Sync Česká Pošta Balíkomaty branches
+            export:
+                toCeskaPostaBalikomatBranch: Česká Pošta Balíkomat branch
+                toAddress: To address

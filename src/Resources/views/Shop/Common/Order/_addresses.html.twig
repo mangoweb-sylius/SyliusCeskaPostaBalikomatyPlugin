@@ -1,0 +1,15 @@
+{% set ceskaPostaBalikomat = order.shipments.last.ceskaPostaBalikomat %}
+{% if ceskaPostaBalikomat %}
+	<address>
+		{{ 'mangoweb.shop.checkout.complete.ceskaPostaBalikomatBrach'|trans }}<br>
+		<strong>
+			{{ order.shippingAddress.firstName }} {{ order.shippingAddress.lastName }}
+		</strong>
+		<br>
+		{{ ceskaPostaBalikomat.name }} - {{ ceskaPostaBalikomat.type }}<br/>
+		{{ ceskaPostaBalikomat.address }}<br/>
+		{{ ceskaPostaBalikomat.zip }} {{ ceskaPostaBalikomat.city }} - {{ ceskaPostaBalikomat.cityPart }}
+	</address>
+{% else %}
+	{% include '@SyliusShop/Common/_address.html.twig' with {'address': order.shippingAddress} %}
+{% endif %}

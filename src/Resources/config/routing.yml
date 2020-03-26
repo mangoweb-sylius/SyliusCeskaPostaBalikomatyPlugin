@@ -1,0 +1,4 @@
+mango_sylius_ceska_posta_balikomaty_plugin_sync:
+    path: /mango-sylius-ceska-posta-balikomaty-plugin-sync/{id}
+    defaults:
+        _controller: MangoSylius\SyliusCeskaPostaBalikomatyPlugin\Controller\SyncBranches
