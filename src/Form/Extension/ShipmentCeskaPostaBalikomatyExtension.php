@@ -7,7 +7,6 @@ namespace MangoSylius\SyliusCeskaPostaBalikomatyPlugin\Form\Extension;
 use Doctrine\ORM\EntityRepository;
 use MangoSylius\SyliusCeskaPostaBalikomatyPlugin\Model\CeskaPostaBalikomatyShippingMethodInterface;
 use Sylius\Bundle\CoreBundle\Form\Type\Checkout\ShipmentType;
-use Sylius\Component\Core\Model\ShipmentInterface;
 use Sylius\Component\Core\Model\ShippingMethodInterface;
 use Sylius\Component\Core\Repository\ShippingMethodRepositoryInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
@@ -16,11 +15,10 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractTypeExtension;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
-use Symfony\Component\Form\FormInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ShipmentCeskaPostaBalikomatyExtension extends AbstractTypeExtension
 {
@@ -39,16 +37,21 @@ class ShipmentCeskaPostaBalikomatyExtension extends AbstractTypeExtension
 	/** @var string */
 	private $balikovnaClass;
 
+	/** @var TranslatorInterface */
+	private $translator;
+
 	public function __construct(
 		ShippingMethodsResolverInterface $shippingMethodsResolver,
 		ShippingMethodRepositoryInterface $shippingMethodRepository,
 		RepositoryInterface $ceskaPostaBalikomatRepository,
+		TranslatorInterface $translator,
 		string $balikovnaClass
 	) {
 		$this->shippingMethodsResolver = $shippingMethodsResolver;
 		$this->shippingMethodRepository = $shippingMethodRepository;
 		$this->ceskaPostaBalikomatRepository = $ceskaPostaBalikomatRepository;
 		$this->balikovnaClass = $balikovnaClass;
+		$this->translator = $translator;
 	}
 
 	/** @param array<mixed> $options */
@@ -69,6 +72,12 @@ class ShipmentCeskaPostaBalikomatyExtension extends AbstractTypeExtension
 				}
 
 				$event->setData($orderData);
+
+				// validation
+				$data = $event->getData();
+				if (array_key_exists('ceskaPostaBalikomat_' . $data['method'], $data) && !((bool) $orderData['ceskaPostaBalikomat_' . $orderData['method']])) {
+					$event->getForm()->addError(new FormError($this->translator->trans('mangoweb.shop.checkout.ceskaPostaBalikomatyBranch', [], 'validators')));
+				}
 			})
 			->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
 				$form = $event->getForm();
@@ -93,48 +102,17 @@ class ShipmentCeskaPostaBalikomatyExtension extends AbstractTypeExtension
 								'required' => false,
 								'mapped' => false,
 								'empty_data' => null,
-								'placeholder' => 'mangoweb.shop.checkout.shippingStep.chooseCeskaPostaBalikomatyBranch',
+								'placeholder' => 'mangoweb.shop.checkout.shippingStep.chooseCeskaPostaBalikomatBranch',
 								'class' => $this->balikovnaClass,
 								'query_builder' => function (EntityRepository $er) {
 									return $er->createQueryBuilder('z')
 										->where('z.disabledAt IS NULL')
 										->orderBy('z.name');
 								},
-								'constraints' => [
-									new NotBlank([
-										'groups' => ['ceska_posta_balikomat_' . $method->getCode()],
-										'message' => 'mangoweb.shop.checkout.ceska_posta_balikomat_branch',
-									]),
-								],
 							]);
 					}
 				}
 			});
-	}
-
-	public function configureOptions(OptionsResolver $resolver): void
-	{
-		parent::configureOptions($resolver);
-
-		$validationGroups = $resolver->resolve()['validation_groups'];
-
-		$resolver->setDefaults([
-			'validation_groups' => function (FormInterface $form) use ($validationGroups) {
-				$entity = $form->getData();
-				assert($entity instanceof ShipmentInterface);
-
-				$shippingMethod = $entity->getMethod();
-
-				if ($shippingMethod !== null) {
-					assert($shippingMethod instanceof CeskaPostaBalikomatyShippingMethodInterface);
-					if ($shippingMethod->getBalikomatShippingMethod()) {
-						$validationGroups = array_merge($validationGroups ?? [], ['ceska_posta_balikomat_' . $shippingMethod->getCode()]);
-					}
-				}
-
-				return $validationGroups;
-			},
-		]);
 	}
 
 	/** @return array<string> */

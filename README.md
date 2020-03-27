@@ -82,8 +82,8 @@
    }
    ```
    
-1. Your Entity `ShippingMethod` has to implement `\MangoSylius\SyliusCeskaPostaBalikomatyPlugin\Model\CeskaPostaBalikomatyShipmentInterface`. 
-   You can use the trait `\MangoSylius\SyliusCeskaPostaBalikomatyPlugin\Model\CeskaPostaBalikomatyShipmentTrait`.
+1. Your Entity `ShippingMethod` has to implement `\MangoSylius\SyliusCeskaPostaBalikomatyPlugin\Model\CeskaPostaBalikomatyShippingMethodInterface`. 
+   You can use the trait `\MangoSylius\SyliusCeskaPostaBalikomatyPlugin\Model\CeskaPostaBalikomatyShippingMethodTrait`.
  
    ```php
    <?php 

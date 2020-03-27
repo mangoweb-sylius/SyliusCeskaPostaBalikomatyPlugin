@@ -1,3 +1,4 @@
+<h4 class="ui dividing header">{{ 'mangoweb.admin.ceskaPostaBalikomaty.form.title'|trans }}</h4>
 {{ form_row(form.balikomatShippingMethod) }}
 {% if resource and resource.id and resource.balikomatShippingMethod %}
 	<a class="ui labeled icon primary button" href="{{ path('mango_sylius_ceska_posta_balikomaty_plugin_sync', {'id': resource.id}) }}" id="ceskaPostaBalikomatyDownloadButton">

@@ -5,3 +5,15 @@ mangoweb:
                 ceskaPostaBalikomatBrach: Česká Pošta Balíkomat
             shippingStep:
                 chooseCeskaPostaBalikomatBranch: Vyberte balíkomat
+
+    admin:
+        ceskaPostaBalikomaty:
+            success:
+                import: Synchronizace balíkomatů proběhla úspěšně.
+            form:
+                title: Česká Pošta Balíkomaty
+                syncAction: Synchronizovat balíkomaty
+                balikomatShippingMethod: Česká Pošta Balíkomaty povoleno
+            export:
+                toCeskaPostaBalikomatBranch: Balíkomat
+                toAddress: To address

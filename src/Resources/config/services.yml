@@ -40,6 +40,7 @@ services:
             $shippingMethodRepository: '@sylius.repository.shipping_method'
             $ceskaPostaBalikomatRepository: '@mango_ceska_posta_balikomaty_plugin.repository.ceska_posta_balikomat'
             $balikovnaClass: '%mango_ceska_posta_balikomaty_plugin.model.ceska_posta_balikomat.class%'
+            $translator: '@translator'
         tags:
             - name: form.type_extension
               extended_type: Sylius\Bundle\CoreBundle\Form\Type\Checkout\ShipmentType

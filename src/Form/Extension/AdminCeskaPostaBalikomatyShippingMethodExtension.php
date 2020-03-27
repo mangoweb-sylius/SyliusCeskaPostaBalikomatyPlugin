@@ -16,7 +16,7 @@ class AdminCeskaPostaBalikomatyShippingMethodExtension extends AbstractTypeExten
 	{
 		$builder
 			->add('balikomatShippingMethod', CheckboxType::class, [
-				'label' => 'mangoweb.admin.balikomat.form.balikomatShippingMethod',
+				'label' => 'mangoweb.admin.ceskaPostaBalikomaty.form.balikomatShippingMethod',
 				'required' => false,
 			]);
 	}
