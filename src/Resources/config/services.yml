@@ -32,6 +32,7 @@ services:
             $downloader: '@MangoSylius\SyliusCeskaPostaBalikomatyPlugin\Model\Api\XmlDownloader'
             $balikomatRepository: '@mango_ceska_posta_balikomaty_plugin.repository.ceska_posta_balikomat'
             $balikomatFactory: '@mango_ceska_posta_balikomaty_plugin.factory.ceska_posta_balikomat'
+            $entityManager: '@doctrine.orm.default_entity_manager'
             $apiUrl: '%ceskaPostaBalikomatyApiUrl%'
 
     MangoSylius\SyliusCeskaPostaBalikomatyPlugin\Form\Extension\ShipmentCeskaPostaBalikomatyExtension:

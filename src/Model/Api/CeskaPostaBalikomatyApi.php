@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace MangoSylius\SyliusCeskaPostaBalikomatyPlugin\Model\Api;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use MangoSylius\SyliusCeskaPostaBalikomatyPlugin\Entity\CeskaPostaBalikomatInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
@@ -23,16 +24,21 @@ class CeskaPostaBalikomatyApi implements CeskaPostaBalikomatyApiInterface
 	/** @var FactoryInterface */
 	private $balikomatFactory;
 
+	/** @var EntityManagerInterface */
+	private $entityManager;
+
 	public function __construct(
 		DownloaderInterface $downloader,
 		RepositoryInterface $balikomatRepository,
 		FactoryInterface $balikomatFactory,
+		EntityManagerInterface $entityManager,
 		string $apiUrl
 	) {
 		$this->downloader = $downloader;
 		$this->apiUrl = $apiUrl;
 		$this->balikomatRepository = $balikomatRepository;
 		$this->balikomatFactory = $balikomatFactory;
+		$this->entityManager = $entityManager;
 	}
 
 	public function syncBranches(): void
@@ -100,8 +106,10 @@ class CeskaPostaBalikomatyApi implements CeskaPostaBalikomatyApiInterface
 			$ceskaPostaBalikomat->setOpeningHours($branch['OTEV_DOBY'] ?? null);
 			$ceskaPostaBalikomat->setDisabledAt(null);
 
-			$this->balikomatRepository->add($ceskaPostaBalikomat);
+			$this->entityManager->persist($ceskaPostaBalikomat);
 		}
+
+		$this->entityManager->flush();
 	}
 
 	/**

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace MangoSylius\SyliusCeskaPostaBalikomatyPlugin\Factory;
 
+use Doctrine\ORM\EntityManagerInterface;
 use MangoSylius\SyliusCeskaPostaBalikomatyPlugin\Model\Api\CeskaPostaBalikomatyApi;
 use MangoSylius\SyliusCeskaPostaBalikomatyPlugin\Model\Api\CeskaPostaBalikomatyApiInterface;
 use MangoSylius\SyliusCeskaPostaBalikomatyPlugin\Model\Api\DownloaderInterface;
@@ -24,16 +25,21 @@ class CeskaPostaBalikomatyApiFactory
 	/** @var FactoryInterface */
 	private $balikomatFactory;
 
+	/** @var EntityManagerInterface */
+	private $entityManager;
+
 	public function __construct(
 		DownloaderInterface $downloader,
 		RepositoryInterface $balikomatRepository,
 		FactoryInterface $balikomatFactory,
+		EntityManagerInterface $entityManager,
 		string $apiUrl
 	) {
 		$this->downloader = $downloader;
 		$this->apiUrl = $apiUrl;
 		$this->balikomatRepository = $balikomatRepository;
 		$this->balikomatFactory = $balikomatFactory;
+		$this->entityManager = $entityManager;
 	}
 
 	public function getCeskaPostaBalikomatyApi(): ?CeskaPostaBalikomatyApiInterface
@@ -42,6 +48,7 @@ class CeskaPostaBalikomatyApiFactory
 			$this->downloader,
 			$this->balikomatRepository,
 			$this->balikomatFactory,
+			$this->entityManager,
 			$this->apiUrl
 		);
 	}
